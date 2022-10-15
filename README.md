@@ -1,6 +1,6 @@
 # Python scraper for Criterion spines
 
-Python script for Scraping spines from Criterion.
+Python script for Scraping spines from the Criterion Collection.
 
 ## Run
 
