@@ -19,10 +19,15 @@ class Parser:
         director = spine.find(class_="g-director").text.strip()
         country = spine.find(class_="g-country").text.strip()
         year = spine.find(class_="g-year").text.strip()
+        cover = spine.find(class_="g-img")
+        cover = cover.find('img')['src']
+        cover = cover.replace('_thumbnail', '_large')
+
         return CriterionSpine(
             spine_no if spine_no else "N/A",
             title,
             director,
             country,
-            year
+            year,
+            cover
         )
