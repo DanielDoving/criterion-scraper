@@ -6,11 +6,11 @@ class CriterionSpine:
         director: str,
         country: str,
         year: str,
-        cover: str,
-        url: str,
-        description: str,
-        runtime: str,
-        language: str,
+        cover: str = "",
+        url: str = "",
+        description: str ="",
+        runtime: str = "",
+        language: str = "",
     ):
         self.spineNo = spineNo
         self.title = title

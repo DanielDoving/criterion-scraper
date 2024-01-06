@@ -17,7 +17,7 @@ def main():
     console.print("Output file: [i blue]" + Config.OUTPUT_FILE + "[/i blue]")
     console.print("Output format: [i blue]" + Config.OUTPUT_FORMAT + "[/i blue]\n")
 
-    spines = doTask("Fetching Spines...", "Spines Fetched\t\t", lambda: Scraper.fetch())
+    spines = doTask("Fetching Spines...", "Spines Fetched\t\t", lambda: Scraper.make_call(Config.CRITERION_URL))
     spines = doTask("Parsing Spines...", "Spines parsed\t\t", lambda: Parser.parse_response(spines))
     spines = doTask("Formatting Spines...", "Spines formatted\t",
                     lambda: FormatterFactory.getInstance().format(spines))

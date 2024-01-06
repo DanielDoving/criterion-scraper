@@ -6,16 +6,19 @@ from classes.CriterionSpine import CriterionSpine
 from classes.Scraper import Scraper
 from classes.Formatters.FormatterFactory import FormatterFactory
 from classes.FileWriter import FileWriter
-
+from os.path import exists
 
 class Parser:
     @staticmethod
     def load():
+        spines = list()
+        if not exists(Config.OUTPUT_FILE):
+            return spines
+        # Read already existing spines from file so that we dont fetch every single Spine every time
         file = open(Config.OUTPUT_FILE, mode="r")
         data = file.read()
         file.close()
         data = json.loads(data)
-        spines = list()
         for spine in data:
             spines.append(CriterionSpine(**spine))
         return spines
@@ -52,7 +55,7 @@ class Parser:
         url = spine['data-href']
         print('Get deets for ' + title)
 
-        deets = Scraper.fetch_details(url)
+        deets = Scraper.make_call(url)
         deets_parser = BeautifulSoup(deets, 'html.parser')
 
         description = deets_parser.find("div", class_="product-summary")
